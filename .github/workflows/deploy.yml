@@ -1,0 +1,42 @@
+name: Deploy Node.js App
+
+on:
+  push:
+    branches:
+      - main  # Or any other branch you want to trigger the deployment from
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # Specify the Node.js version your app uses
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build project
+      run: npm run build  # Optional, depends on your project setup
+
+    - name: Setup SSH
+      uses: webfactory/ssh-agent@v0.8.1
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Copy files to server
+      run: |
+        scp -r ./ sugar-land-register@197.211.61.53:/~/test-back/
+
+    - name: Install dependencies on the server
+      run: |
+        ssh sugar-land-register@197.211.61.53 "cd ~/test-back/ && npm install"
+
+    - name: Restart server application
+      run: |
+        ssh sugar-land-register@197.211.61.53 "pm2 restart index.js || pm2 start index.js --name 'test-back'"
