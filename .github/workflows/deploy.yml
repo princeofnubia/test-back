@@ -43,4 +43,4 @@ jobs:
 
       - name: Restart server application
         run: |
-          ssh sugar-land-register@102.164.33.114 "pm2 restart index.js || pm2 start index.js --name 'test-back'"
+          ssh sugar-land-register@102.164.33.114 "pm2 restart ~/test-back/index.js || pm2 start ~/test-back/index.js --name 'test-back'"
