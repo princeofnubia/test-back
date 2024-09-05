@@ -31,12 +31,12 @@ jobs:
 
       - name: Copy files to server
         run: |
-          scp -r ./ sugar-land-register@197.211.61.53:/~/test-back/
+          scp -r ./ sugar-land-register@102.164.33.114:/~/test-back/
 
       - name: Install dependencies on the server
         run: |
-          ssh sugar-land-register@197.211.61.53 "cd ~/test-back/ && npm install"
+          ssh sugar-land-register@102.164.33.114 "cd ~/test-back/ && npm install"
 
       - name: Restart server application
         run: |
-          ssh sugar-land-register@197.211.61.53 "pm2 restart index.js || pm2 start index.js --name 'test-back'"
+          ssh sugar-land-register@102.164.33.114 "pm2 restart index.js || pm2 start index.js --name 'test-back'"
