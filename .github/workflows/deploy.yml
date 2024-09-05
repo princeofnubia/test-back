@@ -29,6 +29,10 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_SECRET }}
 
+      - name: Add server to known hosts
+        run: |
+          ssh-keyscan -H 102.164.33.114 >> ~/.ssh/known_hosts
+
       - name: Copy files to server
         run: |
           scp -r ./ sugar-land-register@102.164.33.114:/~/test-back/
