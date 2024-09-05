@@ -35,7 +35,7 @@ jobs:
 
       - name: Copy files to server
         run: |
-          scp -r * sugar-land-register@102.164.33.114:/home/sugar-land-register//test-back/
+          scp -r * sugar-land-register@102.164.33.114:/home/sugar-land-register/test-back/
 
       - name: Install dependencies on the server
         run: |
