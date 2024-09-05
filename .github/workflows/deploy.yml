@@ -18,11 +18,11 @@ jobs:
         with:
           node-version: "18.19.1" # Specify the Node.js version your app uses
 
-      - name: Install dependencies
-        run: npm install
+      #- name: Install dependencies
+      # run: npm install
 
-      - name: Build project
-        run: npm run build # Optional, depends on your project setup
+      #- name: Build project
+      #  run: npm run build # Optional, depends on your project setup
 
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.7.0
